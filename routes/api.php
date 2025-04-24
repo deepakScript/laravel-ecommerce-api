@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\LocationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -46,4 +47,12 @@ Route::controller(CategoryController::class)->group(function () {
     Route::post('show/{id}', 'store');
     Route::put('update_category/{id}', 'update_category');
     Route::delete('delete_category/{id}', 'delete_category');
+});
+
+//location controller
+
+Route::controller(LocationController::class)->group(function(){
+    Route::post('store','store');
+    Route::put('update/{id}', 'update');
+    Route::delete('destroy/{id}','destroy');
 });
