@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -67,4 +68,17 @@ Route::controller(ProductController::class)->group(function () {
     Route::post('store', 'store');
     Route::put('update_product/{id}', 'update');
     Route::delete('delete_product/{id}', 'destory');
+});
+
+
+//routes of the order controller
+
+
+Route::controller(OrderController::class)->group(function(){
+    Route::get('index','index');
+    Route::get('show/{id}', 'show');
+    Route::post('store','store');
+    Route::get('get_order_items/{id}', 'get_order_items');
+    Route::get('get_user_orders/{id}','get_user_orders');
+    Route::post('change_order_status/{id}', 'change_order_status');
 });
