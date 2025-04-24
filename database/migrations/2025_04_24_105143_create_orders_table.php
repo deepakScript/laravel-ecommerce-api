@@ -13,17 +13,33 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->enum('status',['Pending','Delivered', 'Out of delivery', 'Canceled', 'Accepted'])->default('Pending');
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('location_id')->unsigned();
-            $table->double('total_price',12,2);
-            $table->string('date_of_delivery');
-
-
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('location_id')->references('id')->on('location')->onDelete('cascade');
+        
+            $table->enum('status', [
+                'Pending',
+                'Accepted',
+                'Out of delivery',
+                'Delivered',
+                'Canceled',
+            ])->default('Pending');
+        
+            // FK to users.id
+            $table->foreignId('user_id')
+                  ->constrained('users')
+                  ->cascadeOnDelete();
+        
+            // FK to locations.id  (change table name if different)
+            $table->foreignId('location_id')
+                  ->constrained('location')    // plural is typical
+                  ->cascadeOnDelete();
+        
+            $table->decimal('total_price', 12, 2);
+        
+            // use date instead of string if possible
+            $table->date('date_of_delivery');
+        
             $table->timestamps();
         });
+        
     }
 
     /**

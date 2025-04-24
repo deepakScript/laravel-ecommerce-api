@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('location', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('street');
             $table->string('building');
             $table->string('area');
             $table->timestamps();
 
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
