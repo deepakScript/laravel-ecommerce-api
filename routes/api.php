@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -34,25 +35,36 @@ Route::group([
 Route::controller(BrandController::class)->group(function () {
     Route::get('index', 'index');
     Route::get('show/{id}', 'show');
-    Route::post('show/{id}', 'store');
+    Route::post('store', 'store');
     Route::put('update_brand/{id}', 'update_brand');
     Route::delete('delete_brand/{id}', 'delete_brand');
 });
 
-//brand controlelr
+//category controlelr
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('index', 'index');
     Route::get('show/{id}', 'show');
-    Route::post('show/{id}', 'store');
+    Route::post('store', 'store');
     Route::put('update_category/{id}', 'update_category');
     Route::delete('delete_category/{id}', 'delete_category');
 });
 
 //location controller
 
-Route::controller(LocationController::class)->group(function(){
-    Route::post('store','store');
+Route::controller(LocationController::class)->group(function () {
+    Route::post('store', 'store');
     Route::put('update/{id}', 'update');
-    Route::delete('destroy/{id}','destroy');
+    Route::delete('destroy/{id}', 'destroy');
+});
+
+
+//product routes for the 
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('index', 'index');
+    Route::get('show/{id}', 'show');
+    Route::post('store', 'store');
+    Route::put('update_product/{id}', 'update');
+    Route::delete('delete_product/{id}', 'destory');
 });
