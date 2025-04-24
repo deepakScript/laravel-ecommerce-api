@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -35,4 +36,14 @@ Route::controller(BrandController::class)->group(function () {
     Route::post('show/{id}', 'store');
     Route::put('update_brand/{id}', 'update_brand');
     Route::delete('delete_brand/{id}', 'delete_brand');
+});
+
+//brand controlelr
+
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('index', 'index');
+    Route::get('show/{id}', 'show');
+    Route::post('show/{id}', 'store');
+    Route::put('update_category/{id}', 'update_category');
+    Route::delete('delete_category/{id}', 'delete_category');
 });
